@@ -1,4 +1,4 @@
-import HomeClient from './HomeClient'
+import HomeClient from './(main)/HomeClient'
 
 export const revalidate = 300 // ISR: revalidate home page every 5 minutes
 
