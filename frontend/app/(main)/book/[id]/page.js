@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 
 async function getBookData(id) {
   try {
-    const res = await fetch(`http://api.bookshare.tech/api/books/${id}`, {
+    const res = await fetch(`https://api.bookshare.tech/api/books/${id}`, {
       next: { revalidate: 60 } // Cache for 1 minute
     })
     if (!res.ok) return null

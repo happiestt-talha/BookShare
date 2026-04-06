@@ -10,7 +10,7 @@ def create_app():
     app.config.from_object(Config)
 
     # Allow Next.js frontend to communicate with Flask backend
-    CORS(app, supports_credentials=True, origins=['http://localhost:3000'])
+    CORS(app, supports_credentials=True, origins=['http://localhost:3000','https://bookshare.tech'])
 
     db.init_app(app)
     login_manager.init_app(app)

@@ -1,10 +1,12 @@
 export default async function sitemap() {
   const baseUrl = 'https://bookshare.tech'
 
-  // Fetch all books for dynamic routes
   let books = []
   try {
-    const response = await fetch('http://api.bookshare.tech/api/books')
+    const response = await fetch('https://api.bookshare.tech/api/books', {
+      next: { revalidate: 3600 },
+    })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const data = await response.json()
     books = data.books || []
   } catch (error) {
@@ -19,30 +21,10 @@ export default async function sitemap() {
   }))
 
   const staticUrls = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/browse`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/auth/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/auth/register`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
+    { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
+    { url: `${baseUrl}/browse`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
+    { url: `${baseUrl}/auth/login`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
+    { url: `${baseUrl}/auth/register`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
   ]
 
   return [...staticUrls, ...bookUrls]

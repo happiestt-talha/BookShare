@@ -2,13 +2,18 @@
 const nextConfig = {
   compress: true,
   images: {
-    domains: ['images.unsplash.com', 'api.bookshare.tech'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'your-image-domain.com',
+      },
+    ],
   },
   async rewrites() {
     return [
       {
         source: '/uploads/:path*',
-        destination: 'http://api.bookshare.tech/uploads/:path*',
+        destination: 'https://api.bookshare.tech/uploads/:path*',
       },
     ]
   },
