@@ -1,0 +1,15 @@
+{
+  "name": "BookShare",
+  "short_name": "BookShare",
+  "description": "Share and borrow books free in your community",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F5F0",
+  "theme_color": "#2D4A3E",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable any" }
+  ],
+  "categories": ["education", "books", "lifestyle"]
+}

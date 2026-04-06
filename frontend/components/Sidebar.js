@@ -12,6 +12,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
 import { useState, useEffect } from 'react'
 import { getNotifications } from '@/lib/api'
+import Image from 'next/image'
 
 const guestLinks = [
     { href: '/', label: 'Home', icon: Home },
@@ -54,25 +55,35 @@ export default function Sidebar() {
     return (
         <aside className="fixed inset-y-0 left-0 w-60 bg-forest flex flex-col z-40 sidebar-scroll overflow-y-auto">
             {/* Logo */}
-            <div className="px-6 py-6 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-sage/20 flex items-center justify-center flex-shrink-0">
-                    <BookOpen className="w-4 h-4 text-sage" />
-                </div>
-                <span className="font-display text-lg text-white font-semibold tracking-wide">
-                    BookShare
-                </span>
+            <div role="banner" className="px-6 py-6 flex items-center gap-3">
+                <Link href="/" aria-label="BookShare home" className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-sage/20 flex items-center justify-center flex-shrink-0">
+                        <BookOpen className="w-4 h-4 text-sage" />
+                    </div>
+                    <span className="font-display text-lg text-white font-semibold tracking-wide">
+                        BookShare
+                    </span>
+                    {/* <Image
+                        src="/logo.png"
+                        alt="BookShare Logo"
+                        width={40}
+                        height={40}
+                        className="rounded-lg"
+                    /> */}
+                </Link>
             </div>
 
             <Separator className="bg-white/10 mx-4" />
 
             {/* Nav links */}
-            <nav className="flex-1 px-3 py-4 space-y-1">
+            <nav aria-label="Main navigation" className="flex-1 px-3 py-4 space-y-1">
                 {links.map(({ href, label, icon: Icon }) => {
                     const active = pathname === href || (href !== '/' && pathname.startsWith(href))
                     return (
                         <Link
                             key={href}
                             href={href}
+                            aria-current={active ? 'page' : undefined}
                             className={cn(
                                 'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-body transition-all duration-150',
                                 active
